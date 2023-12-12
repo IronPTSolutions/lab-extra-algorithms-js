@@ -194,6 +194,8 @@ function containsAllVowels(word) {
  * Count how many sheep there are in array (ignoring cases).
  * If there are a wolf in the array then a poor sheep will die, but if there are a dog then the wolf can't kill a sheep.
  * ['sheep', 'wolf', 'dog', 'ShEep'] => 2
+ * ['sheep', 'wolf', 'wolf', 'dog'] => 1
+ * ['wolf', 'dog'] => 0
  * [] => 0
  * ['shep'] => 0
  * ['SHEEP', 'sheep', 'dog'] => 2
