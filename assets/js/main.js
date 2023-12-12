@@ -189,3 +189,17 @@ function capitalize(sentence) {
 function containsAllVowels(word) {
 
 }
+
+/**
+ * Count how many sheep there are in array (ignoring cases).
+ * If there are a wolf in the array then a poor sheep will die, but if there are a dog then the wolf can't kill a sheep.
+ * ['sheep', 'wolf', 'dog', 'ShEep'] => 2
+ * [] => 0
+ * ['shep'] => 0
+ * ['SHEEP', 'sheep', 'dog'] => 2
+ * @param {[string]} animals 
+ * @returns {number}
+ */
+function countSheep(animals) {
+
+}
