@@ -177,3 +177,15 @@ function capitalize(sentence) {
 
 }
 
+
+/**
+ * "aeiou" => true
+ * "a" => false
+ * "sol" => false
+ * "solitarieu" => true
+ * @param {string} word 
+ * @returns {boolean}
+ */
+function containsAllVowels(word) {
+
+}
