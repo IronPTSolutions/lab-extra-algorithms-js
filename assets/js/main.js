@@ -246,3 +246,66 @@ function capitalize(sentence) {
   }
 console.log(capitalize("hello world"));
 console.log(capitalize("this is a sentence")); 
+
+/**
+ * "aeiou" => true
+ * "a" => false
+ * "sol" => false
+ * "solitarieu" => true
+ * @param {string} word 
+ * @returns {boolean}
+ */
+function containsAllVowels(word) {
+  const vocals = ['a', 'e', 'i', 'o', 'u'];
+
+  const allVocals = vocals.every(function(vocal) {
+    return word.includes(vocal);
+  });
+
+  return allVocals;
+}
+
+console.log(containsAllVowels("aeiou"));
+console.log(containsAllVowels("a"));
+console.log(containsAllVowels("sol"));
+console.log(containsAllVowels("solitarieu"));
+
+/**
+ * Count how many sheep there are in array (ignoring cases).
+ * If there are a wolf in the array then a poor sheep will die, but if there are a dog then the wolf can't kill a sheep.
+ * ['sheep', 'wolf', 'dog', 'ShEep'] => 2
+ * ['sheep', 'wolf', 'wolf', 'dog'] => 1
+ * ['wolf', 'dog'] => 0
+ * [] => 0
+ * ['shep'] => 0
+ * ['SHEEP', 'sheep', 'dog'] => 2
+ * @param {[string]} animals 
+ * @returns {number}
+ */
+function countSheep(animals) {
+  let sheepCount = 0;
+  let wolfCount = 0;
+  let dogCount = 0;
+  for (let i = 0; i < animals.length; i++) {
+    let iAnimals = animals[i];
+    if (iAnimals.toLowerCase() === 'sheep') {
+      sheepCount++;
+    } else if (iAnimals.toLowerCase() === 'wolf'){
+      wolfCount++;
+    } else if (iAnimals.toLowerCase() === 'dog'){
+      dogCount++;
+    }
+  }
+  if (sheepCount > 0 && wolfCount > dogCount) {
+    sheepCount--;
+  }
+  return sheepCount;
+}
+
+
+console.log(countSheep(['sheep', 'wolf', 'dog', 'ShEep'])); 
+console.log(countSheep(['sheep', 'wolf', 'wolf', 'dog'])); 
+console.log(countSheep(['wolf', 'dog']));
+console.log(countSheep([])); 
+console.log(countSheep(['shep']));
+console.log(countSheep(['SHEEP', 'sheep', 'dog']));
