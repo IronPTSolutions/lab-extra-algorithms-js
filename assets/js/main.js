@@ -118,8 +118,24 @@ function exists(elements, element) {
  * @returns {boolean}
  */
 function every(elements, element) {
-
+let result = true;
+let i = 0;
+while (i < elements.length) {
+  const iElement = elements[i];
+  if (iElement === element) {
+    result = true;
+  } else if (iElement !== element) {
+    result = false;
+    break;
+  }
+  i++;
 }
+  return result;
+}
+ console.log(every([1, 2, 3, 4], 2));
+ console.log(every([1, 1, 1, 1], 1));
+ console.log(every(['a', 'a'] , 'a'));
+ console.log(every(['a', 'b'], 'a'));
 
 /**
  * abcd - [0,3,1,2] => acdb
@@ -146,8 +162,15 @@ function scrambleIt(word, positions) {
  * @returns {number}  
  */
 function reverseNumber(number) {
-
-}
+  let numberReserve = '';
+  
+  for (let i = number.toString().length - 1; i >= 0; i--) {
+    iNumber = number.toString()[i];
+    numberReserve += iNumber;
+  }
+    return numberReserve += iNumber;
+  }
+  console.log(reverseNumber(12345));
 
 /**
  * 
@@ -163,9 +186,44 @@ function reverseNumber(number) {
  * @param {string} sample 
  * @returns {boolean}  
  */
-function isMisspelled(original, sample) {
+function isMisspelled(word1, word2) {
+  if (word1 === word2) {
+    return true;
+  }
 
-}
+  if (word1.length === word2.length) {
+    let differences = 0;
+    for (let i = 0; i < word1.length; i++) {
+      if (word1[i] !== word2[i]) {
+        differences++;
+      }
+    }
+    if (differences > 1) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  if (word1.length !== word2.length) {
+    if (word1.length - word2.length > 1 ||  word2.length - word1.length > 1) {
+      return false;
+    } else {
+      if (word1.includes(word2) || word2.includes(word1)) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
+  }
+console.log(isMisspelled('versed', 'xersed'));
+console.log(isMisspelled('versed', 'applb'));
+console.log(isMisspelled('versed', 'v5rsed'));
+console.log(isMisspelled('1versed', 'versed')); 
+console.log(isMisspelled('versed1', 'versed'));
+console.log(isMisspelled('versed', 'veersed'));
+console.log(isMisspelled('versed', 'versed'));
 
 /**
  * hello world => Hello World
@@ -174,9 +232,20 @@ function isMisspelled(original, sample) {
  * @returns {string}  
  */
 function capitalize(sentence) {
-
-}
-
+  let sentenceArray = sentence.split(" ");
+  let mayusLetter = "";
+    for (let i = 0; i < sentenceArray.length; i++) {
+    let newPhrase = sentenceArray[i];
+    if (newPhrase.length >= 3) {
+      newPhrase = newPhrase[0].toUpperCase() + newPhrase.slice(1).toLowerCase();
+    }
+    mayusLetter += newPhrase + " "
+    }
+  mayusLetter = mayusLetter.trim();
+  return mayusLetter;
+  }
+console.log(capitalize("hello world"));
+console.log(capitalize("this is a sentence")); 
 
 /**
  * "aeiou" => true
@@ -187,8 +256,15 @@ function capitalize(sentence) {
  * @returns {boolean}
  */
 function containsAllVowels(word) {
+  const vocals = ['a', 'e', 'i', 'o', 'u'];
 
+  const allVocals = vocals.every(function(vocal) {
+    return word.includes(vocal);
+  });
+
+  return allVocals;
 }
+
 
 /**
  * Count how many sheep there are in array (ignoring cases).
@@ -203,5 +279,21 @@ function containsAllVowels(word) {
  * @returns {number}
  */
 function countSheep(animals) {
-
+    let sheepCount = 0;
+  let wolfCount = 0;
+  let dogCount = 0;
+  for (let i = 0; i < animals.length; i++) {
+    let iAnimals = animals[i];
+    if (iAnimals.toLowerCase() === 'sheep') {
+      sheepCount++;
+    } else if (iAnimals.toLowerCase() === 'wolf'){
+      wolfCount++;
+    } else if (iAnimals.toLowerCase() === 'dog'){
+      dogCount++;
+    }
+  }
+  if (sheepCount > 0 && wolfCount > dogCount) {
+    sheepCount--;
+  }
+  return sheepCount;
 }
