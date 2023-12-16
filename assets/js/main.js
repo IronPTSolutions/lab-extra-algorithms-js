@@ -265,10 +265,6 @@ function containsAllVowels(word) {
   return allVocals;
 }
 
-console.log(containsAllVowels("aeiou"));
-console.log(containsAllVowels("a"));
-console.log(containsAllVowels("sol"));
-console.log(containsAllVowels("solitarieu"));
 
 /**
  * Count how many sheep there are in array (ignoring cases).
@@ -283,7 +279,7 @@ console.log(containsAllVowels("solitarieu"));
  * @returns {number}
  */
 function countSheep(animals) {
-  let sheepCount = 0;
+    let sheepCount = 0;
   let wolfCount = 0;
   let dogCount = 0;
   for (let i = 0; i < animals.length; i++) {
@@ -301,11 +297,3 @@ function countSheep(animals) {
   }
   return sheepCount;
 }
-
-
-console.log(countSheep(['sheep', 'wolf', 'dog', 'ShEep'])); 
-console.log(countSheep(['sheep', 'wolf', 'wolf', 'dog'])); 
-console.log(countSheep(['wolf', 'dog']));
-console.log(countSheep([])); 
-console.log(countSheep(['shep']));
-console.log(countSheep(['SHEEP', 'sheep', 'dog']));
