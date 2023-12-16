@@ -118,7 +118,20 @@ function exists(elements, element) {
  * @returns {boolean}
  */
 function every(elements, element) {
+  let result = true;
+  let i = 0;
 
+  while (i < elements.length) {
+    const check = elements[i];
+    if (check === element) {
+      result = true;
+    } else if (check !== element) {
+      return false;
+      break;
+    }
+    i++;
+  }
+  return result;
 }
 
 /**
@@ -147,6 +160,14 @@ function scrambleIt(word, positions) {
  */
 function reverseNumber(number) {
 
+  const numToStr = number.toString();
+
+  let newNumber = "";
+
+  for (let i = numToStr.length - 1; i >= 0; i--) {
+    newNumber += numToStr[i];
+  }
+  return parseInt(newNumber);
 }
 
 /**
@@ -173,10 +194,17 @@ function isMisspelled(original, sample) {
  * @param {*} sentence 
  * @returns {string}  
  */
-function capitalize(sentence) {
+function capitalize(sentence) { 
 
+  const words = sentence.toLowerCase().split(" ");
+  
+  for (let i = 0; i < words.length; i++) {
+    if (words[i].length > 3) {
+      words[i] = words[i][0].toUpperCase() + words[i].substr(1);
+    }
+  }
+  return words.join(" ");
 }
-
 
 /**
  * "aeiou" => true
@@ -187,7 +215,12 @@ function capitalize(sentence) {
  * @returns {boolean}
  */
 function containsAllVowels(word) {
+  const vowels = ['a', 'e', 'i', 'o', 'u']
 
+  const areVowels = vowels.every(function(vowel)) {
+    return word.includes(vowel);
+  }
+  return areVowels;
 }
 
 /**
@@ -203,5 +236,23 @@ function containsAllVowels(word) {
  * @returns {number}
  */
 function countSheep(animals) {
+  let sheepCounter = 0;
+  let wolfCounter = 0;
+  let dogCounter = 0;
 
+  for (let i = 0; i < animals.length; i++) {
+    let animal = animals[i];
+    if (animal.toLowerCase() === "sheep") {
+      sheepCounter++;
+    } else if (animal.toLowerCase() === "wolf") {
+      wolfCounter++;
+    } else if (animal.toLowerCase() === "dog") {
+      dogCounter++;
+    }
+  }
+
+  if (sheepCounter > 0 && (wolfCounter > dogCounter)) {
+    sheepCounter--
+  }
+  return sheepCounter;
 }
