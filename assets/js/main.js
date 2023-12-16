@@ -139,6 +139,7 @@ function scrambleIt(word, positions) {
   return scramble.join('');
 }
 
+
 /**
  * 12345 => 54321
  * 34 => 43
@@ -146,8 +147,15 @@ function scrambleIt(word, positions) {
  * @returns {number}  
  */
 function reverseNumber(number) {
-
+  number = `${number}`;
+  let reversed = '';
+  for (let i = number.length - 1; i >= 0; i--) {
+    const digit = number[i];
+    reversed += digit;
+  }
+  return parseInt(reversed);
 }
+
 
 /**
  * 
@@ -164,19 +172,52 @@ function reverseNumber(number) {
  * @returns {boolean}  
  */
 function isMisspelled(original, sample) {
-
+  let result = false;
+  if (original.length === sample.length) {
+    let diff = 0;
+    let i = 0;
+    while (diff < 2 && i < original.length) {
+      const originalChar = original[i];
+      const sampleChar = sample[i];
+      if (originalChar !== sampleChar) {
+        diff++;
+      }
+      i++;
+    }
+    result = diff < 2;
+  } else if (Math.abs(original.length - sample.length) === 1) {
+    if (original.length > sample.length) {
+      result = original.includes(sample);
+    } else {
+      result = sample.includes(original);
+    }
+  } else {
+    result = false;
+  }
+  return result;
 }
 
 /**
- * hello world => Hello World
- * this is a sentence => This is a Sentence
- * @param {*} sentence 
+ * 'hello world' => 'Hello World'
+ * 'this IS A sentence' => 'This iS a Sentence'
+ * @param {string} sentence 
  * @returns {string}  
  */
 function capitalize(sentence) {
-
+  const words = sentence.split(' ');
+  const capitalizedWords = [];
+  for (let i = 0; i < words.length; i++) {
+    const word = words[i];
+    if (word.length > 3) {
+      const capitalized = word[0].toUpperCase() + word.substring(1);
+      capitalizedWords.push(capitalized);
+    } else {
+      const loweralized = (word.length > 1) ? word[0].toLowerCase() + word.substring(1) : word[0].toLowerCase();
+      capitalizedWords.push(loweralized);
+    }
+  }
+  return capitalizedWords.join(' ');
 }
-
 
 /**
  * "aeiou" => true
@@ -194,7 +235,7 @@ function containsAllVowels(word) {
  * Count how many sheep there are in array (ignoring cases).
  * If there are a wolf in the array then a poor sheep will die, but if there are a dog then the wolf can't kill a sheep.
  * ['sheep', 'wolf', 'dog', 'ShEep'] => 2
- * ['sheep', 'wolf', 'wolf', 'dog'] => 1
+ * ['sheep', 'wolf', 'wolf', 'dog'] => 0
  * ['wolf', 'dog'] => 0
  * [] => 0
  * ['shep'] => 0
@@ -203,5 +244,50 @@ function containsAllVowels(word) {
  * @returns {number}
  */
 function countSheep(animals) {
+  let sheep = 0;
+  let wolves = 0;
+  let dogs = 0;
+  for (let i = 0; i < animals.length; i++) {
+    const animal = animals[i].toLowerCase();
+    switch (animal) {
+      case 'sheep':
+        sheep++;
+        break;
+      case 'wolf':
+        wolves++;
+        break;
+      case 'dog':
+        dogs++;
+        break;
+    }
+  }
+
+  if (wolves > dogs) {
+    return Math.max(sheep - (wolves - dogs), 0);
+  } else {
+    return sheep;
+  }
+}
+
+/**
+ * [1, -1] => 1
+ * [1, -1, -1, 2] => 3
+ * [-1, -1, -2] => 0
+ * @param {[number]} numbers 
+ * @returns {[numbers]}
+ */
+function sumPositives(numbers) {
+
+}
+
+
+/**
+ * [1, -1] => [-1, 1]
+ * [1, -1, -1, 2] => [-1, 1, 1, -2]
+ * [-1, -1, -2] => [1, 1, 2]
+ * @param {[number]} numbers 
+ * @returns {[numbers]}
+ */
+function invert(numbers) {
 
 }
